@@ -11,12 +11,29 @@ import Observation
 @Observable
 class Weathermodels {
     private let baseUrl = "https://api.open-meteo.com/v1/forecast"
-    private let weatherUrl = "?latitude=52.52&longitude=13.41&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Europe%2FBerlin"
+    var locationManager: LocationManager
+
+    
+    private var weatherUrl =  "?latitude=%f&longitude=%f&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Europe%2FBerlin" //mabye not needed to type an url here
     
     var isLoading = false
     var weeklyWeather: [WeeklyModel] = []
+    var currentWeather: [CurrentModel] = []
+    
+    
+    init(locationManager: LocationManager) {
+        self.locationManager = locationManager
+    }
     
     func loadWeather() async throws {
+        guard let currentLocation = locationManager.currentLocation else {
+            print("Location Problem")
+            return
+        }
+        
+        // Update the weatherUrl with the actual latitude and longitude
+        weatherUrl = "?latitude=\(currentLocation.latitude)&longitude=\(currentLocation.longitude)&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Europe%2FBerlin"
+        
         guard let url = URL(string: baseUrl + weatherUrl) else {
             return
         }
@@ -26,6 +43,7 @@ class Weathermodels {
         do{
             let weather = try JSONDecoder().decode(WeatherData.self, from: data)
             weeklyWeather = [WeeklyModel(daily: weather.daily, baseUrl: baseUrl)]
+            currentWeather = [CurrentModel(current: weather.current, baseUrl: baseUrl)]
             print(weather)
         } catch{
             print(error)
