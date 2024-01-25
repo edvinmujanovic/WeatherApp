@@ -23,7 +23,7 @@ class WeeklyModel {
         minTemp = daily.temperature_2m_min
     }
     
-    static func getDayOfWeek(from dates: [String]) -> [String] {
+    static func getDayOfWeek(from dates: [String]) -> [String] { //för att få veckodag vid datumet
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         

@@ -17,7 +17,7 @@ class Weathermodels {
     private var weatherUrl =  "?latitude=%f&longitude=%f&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Europe%2FBerlin" //mabye not needed to type an url here
     
     var isLoading = false
-    var weeklyWeather: [WeeklyModel] = []
+    var weeklyWeather: [WeeklyModel] = [] //as garrit did
     var currentWeather: [CurrentModel] = []
     
     
@@ -42,7 +42,7 @@ class Weathermodels {
         let (data, _) = try await URLSession.shared.data(from: url)
         do{
             let weather = try JSONDecoder().decode(WeatherData.self, from: data)
-            weeklyWeather = [WeeklyModel(daily: weather.daily, baseUrl: baseUrl)]
+            weeklyWeather = [WeeklyModel(daily: weather.daily, baseUrl: baseUrl)] //as garrit did
             currentWeather = [CurrentModel(current: weather.current, baseUrl: baseUrl)]
             print(weather)
         } catch{

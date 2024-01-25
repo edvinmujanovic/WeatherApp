@@ -82,7 +82,7 @@ struct WeatherView: View {
             .padding(.top, 20)
         }
         .background(
-            LinearGradient(gradient: Gradient(colors: [Color.white, Color.blue]), startPoint: .top, endPoint: .bottom)
+            LinearGradient(gradient: Gradient(colors: [Color.blue, Color.white]), startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
         )
         .task {
