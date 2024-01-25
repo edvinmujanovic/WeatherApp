@@ -21,8 +21,8 @@ class Weathermodels {
         
         let (data, _) = try await URLSession.shared.data(from: url)
         do{
-            let Weather = try JSONDecoder().decode(WeatherModel.self, from: data)
-            print(Weather)
+            let weather = try JSONDecoder().decode(WeatherData.self, from: data)
+            print(weather)
         } catch{
             print(error)
         }

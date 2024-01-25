@@ -16,11 +16,11 @@ struct WeatherView: View {
             if model.isLoading{
                 ProgressView()
             } else {
-                
+                Text("Finished Loading!")
             }
-                .task{
-                    try? await model.loadWeather()
-                }
+        }
+        .task{
+            try? await model.loadWeather()
         }
     }
     
