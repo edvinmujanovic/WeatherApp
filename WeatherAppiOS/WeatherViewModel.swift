@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+/*
 class WeatherViewModel: ObservableObject {
     @Published var currentWeather: WeatherModel?
     @Published var weeklyForecast: [WeatherModel.Daily]?
@@ -51,3 +51,4 @@ class WeatherViewModel: ObservableObject {
         }
     }
 }
+*/

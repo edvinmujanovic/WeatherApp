@@ -7,8 +7,6 @@
 
 import Foundation
 
-
-
 struct WeatherData: Decodable {
     let latitude: Double
     let longitude: Double
