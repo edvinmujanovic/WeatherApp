@@ -17,13 +17,13 @@ struct WeatherView: View {
                 // Display Current Weather
                 if let currentModel = model.currentWeather.first {
                     VStack {
-                        Text("Current Weather 🌦")
+                        Text("Current Weather 🌦")  //fix design, display temperature bigger and also display current city
                             .font(.title)
                             .fontWeight(.bold)
                             .foregroundColor(.black)
                             .padding(.top, 10)
                         
-                        Text("Date: \(currentModel.date)")
+                        Text("Date: \(currentModel.date)") //fix more appealing date
                             .font(.subheadline)
                             .foregroundColor(.gray)
                         
@@ -96,6 +96,43 @@ struct WeatherView: View {
 }
 
 
+struct WeatherViewCompact: View {
+    @State private var locationManager = LocationManager()
+    @State private var model = Weathermodels(locationManager: LocationManager())
+    
+    var body: some View {
+        VStack(spacing: 8) {
+            // Display Current Weather
+            if let currentModel = model.currentWeather.first {
+                VStack {
+                    Text("\(Int(currentModel.temp))°C") // Display temperature
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .foregroundColor(.black)
+                    
+                    Text("🌦") // Display weather emoji or icon
+                        .font(.largeTitle)
+                        .foregroundColor(.blue)
+                }
+                .padding()
+                .background(RoundedRectangle(cornerRadius: 10).fill(Color.white).shadow(radius: 5))
+                .padding(.horizontal, 16)
+            }
+        }
+        .onAppear {
+            Task {
+                do {
+                    try await model.loadWeather()
+                } catch {
+                    print("Error loading weather: \(error)")
+                }
+            }
+        }
+    }
+}
+
+
 #Preview {
     WeatherView()
+   // WeatherViewCompact()
 }
