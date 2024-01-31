@@ -5,79 +5,80 @@
 //  Created by Edvin Mujanovic on 2024-01-26.
 //
 
+
 import WidgetKit
 import SwiftUI
 
-struct Provider: TimelineProvider {
+struct WeatherProvider: TimelineProvider {
+    @State private var locationManager = LocationManager()
+    @State private var model = Weathermodels(locationManager: LocationManager())
+
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), emoji: "😀")
+        SimpleEntry(date: Date(), temperature: 20.0)
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), emoji: "😀")
+        let entry = SimpleEntry(date: Date(), temperature: 20.0)
         completion(entry)
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [SimpleEntry] = []
+        Task {
+            var localEntries: [SimpleEntry] = [] // Use a local variable
 
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, emoji: "😀")
-            entries.append(entry)
+            do {
+                try await model.loadWeather()
+                if let currentWeather = model.currentWeather {
+                    let entry = SimpleEntry(date: Date(), temperature: currentWeather.temp)
+                    localEntries.append(entry)
+                }
+            } catch {
+                print("Error fetching weather data: \(error)")
+                let entry = SimpleEntry(date: Date(), temperature: 20.0)
+                localEntries.append(entry)
+            }
+
+            let timeline = Timeline(entries: localEntries, policy: .atEnd)
+            completion(timeline)
         }
-
-        let timeline = Timeline(entries: entries, policy: .atEnd)
-        completion(timeline)
     }
 }
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
-    let emoji: String
+    let temperature: Double
 }
 
-struct WeatherAppWidgetEntryView : View {
-    var entry: Provider.Entry
+struct WeatherAppWidgetEntryView: View {
+    var entry: WeatherProvider.Entry
 
     var body: some View {
-            VStack {
-                Text("Current Weather")
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .foregroundColor(.black)
-                
-            }
-            .padding()
-            .background(RoundedRectangle(cornerRadius: 10).fill(Color.white).shadow(radius: 5))
-            .padding(.horizontal, 16)
+        VStack {
+            Text("Current Temperature:")
+            Text("\(entry.temperature)°C")
+                .font(.title)
+                .fontWeight(.bold)
         }
+        .padding()
+        .background(RoundedRectangle(cornerRadius: 10).fill(Color.blue).shadow(radius: 5))
     }
+}
 
 struct WeatherAppWidget: Widget {
     let kind: String = "WeatherAppWidget"
 
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: Provider()) { entry in
-            if #available(iOS 17.0, *) {
-                WeatherAppWidgetEntryView(entry: entry)
-                    .containerBackground(.fill.tertiary, for: .widget)
-            } else {
-                WeatherAppWidgetEntryView(entry: entry)
-                    .padding()
-                    .background()
-            }
+        StaticConfiguration(kind: kind, provider: WeatherProvider()) { entry in
+            WeatherAppWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("Weather Widget")
+        .description("Display the current temperature.")
     }
 }
 
 #Preview(as: .systemSmall) {
     WeatherAppWidget()
 } timeline: {
-    SimpleEntry(date: .now, emoji: "😀")
-    SimpleEntry(date: .now, emoji: "🤩")
+    SimpleEntry(date: .now, temperature: 20.0)
+    SimpleEntry(date: .now, temperature: 25.0)
 }

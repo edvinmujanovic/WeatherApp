@@ -18,7 +18,7 @@ class Weathermodels {
     
     var isLoading = false
     var weeklyWeather: [WeeklyModel] = [] //as garrit did
-    var currentWeather: [CurrentModel] = []
+    var currentWeather: CurrentModel?
     
     
     init(locationManager: LocationManager) {
@@ -43,7 +43,7 @@ class Weathermodels {
         do{
             let weather = try JSONDecoder().decode(WeatherData.self, from: data)
             weeklyWeather = [WeeklyModel(daily: weather.daily, baseUrl: baseUrl)] //as garrit did
-            currentWeather = [CurrentModel(current: weather.current, baseUrl: baseUrl)]
+            currentWeather = CurrentModel(current: weather.current, baseUrl: baseUrl)
             print(weather)
         } catch{
             print(error)

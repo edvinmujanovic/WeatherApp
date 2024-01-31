@@ -16,11 +16,12 @@ class CurrentModel {
     let temp: Double
     let weatherCode : Int
     
-    init(current: WeatherData.Current, baseUrl: String){
-        date = current.time
-        interval = current.interval
-        temp = current.temperature_2m
-        weatherCode = current.weather_code
+    init(current: WeatherData.Current, baseUrl: String = "") {
+        self.date = current.time
+        self.interval = current.interval
+        self.temp = current.temperature_2m
+        self.weatherCode = current.weather_code
     }
+
     
 }

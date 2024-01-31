@@ -15,7 +15,7 @@ struct WeatherView: View {
         ScrollView {
             VStack(spacing: 16) {
                 // Display Current Weather
-                if let currentModel = model.currentWeather.first {
+                if let currentModel = model.currentWeather { //tog bort first
                     VStack {
                         Text("Current Weather 🌦")  //fix design, display temperature bigger and also display current city
                             .font(.title)
@@ -97,42 +97,32 @@ struct WeatherView: View {
 
 
 struct WeatherViewCompact: View {
-    @State private var locationManager = LocationManager()
-    @State private var model = Weathermodels(locationManager: LocationManager())
-    
+    var weather: CurrentModel
+
     var body: some View {
-        VStack(spacing: 8) {
+        VStack(spacing: 12) {
             // Display Current Weather
-            if let currentModel = model.currentWeather.first {
-                VStack {
-                    Text("\(Int(currentModel.temp))°C") // Display temperature
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .foregroundColor(.black)
-                    
-                    Text("🌦") // Display weather emoji or icon
-                        .font(.largeTitle)
-                        .foregroundColor(.blue)
-                }
-                .padding()
-                .background(RoundedRectangle(cornerRadius: 10).fill(Color.white).shadow(radius: 5))
-                .padding(.horizontal, 16)
+            VStack {
+                Text("\(Int(weather.temp))°C")
+                    .font(.title3)
+                    .fontWeight(.bold)
+                    .foregroundColor(.black)
+
+                Text("🌦")
+                    .font(.title)
+                    .foregroundColor(.blue)
             }
-        }
-        .onAppear {
-            Task {
-                do {
-                    try await model.loadWeather()
-                } catch {
-                    print("Error loading weather: \(error)")
-                }
-            }
+            .padding()
+            .background(RoundedRectangle(cornerRadius: 10).fill(Color.white).shadow(radius: 5))
+            .padding(.horizontal, 4)
         }
     }
 }
 
 
+
+
 #Preview {
     WeatherView()
-   // WeatherViewCompact()
+    //WeatherViewCompact()
 }

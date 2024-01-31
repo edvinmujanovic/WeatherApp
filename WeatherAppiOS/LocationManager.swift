@@ -23,15 +23,21 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         super.init()
         self.locationManager.delegate = self
         self.locationManager.requestWhenInUseAuthorization()
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        self.locationManager.distanceFilter = 10.0
         self.locationManager.startUpdatingLocation()
     }
     
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let userLocation = locations.first?.coordinate else { return }
+        guard let userLocation = locations.first?.coordinate else {
+            print("No user location available")
+            return
+        }
         self.currentLocation = userLocation
         print("Did update locations. New Location: \(userLocation)")
     }
-    
+
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Location Manager Error: \(error.localizedDescription)")
     }
