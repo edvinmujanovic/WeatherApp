@@ -97,13 +97,14 @@ struct WeatherView: View {
 
 
 struct WeatherViewCompact: View {
-    var weather: CurrentModel
+    @AppStorage(DataStoring.tempKey, store: UserDefaults(suiteName: DataStoring.SharedStorage)) private var currentTemperature: Double = 8.0
+    
 
     var body: some View {
         VStack(spacing: 12) {
             // Display Current Weather
             VStack {
-                Text("\(Int(weather.temp))°C")
+                Text("\(Int(currentTemperature))°C")
                     .font(.title3)
                     .fontWeight(.bold)
                     .foregroundColor(.black)
@@ -116,6 +117,7 @@ struct WeatherViewCompact: View {
             .background(RoundedRectangle(cornerRadius: 10).fill(Color.white).shadow(radius: 5))
             .padding(.horizontal, 4)
         }
+
     }
 }
 

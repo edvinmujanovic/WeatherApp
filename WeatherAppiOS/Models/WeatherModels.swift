@@ -10,15 +10,20 @@ import Observation
 
 @Observable
 class Weathermodels {
+    
+    
     private let baseUrl = "https://api.open-meteo.com/v1/forecast"
     var locationManager: LocationManager
-
+    
     
     private var weatherUrl =  "?latitude=%f&longitude=%f&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Europe%2FBerlin" //mabye not needed to type an url here
     
     var isLoading = false
     var weeklyWeather: [WeeklyModel] = [] //as garrit did
     var currentWeather: CurrentModel?
+    var dataStoring: DataStoring?
+    
+    
     
     
     init(locationManager: LocationManager) {
@@ -45,6 +50,9 @@ class Weathermodels {
             weeklyWeather = [WeeklyModel(daily: weather.daily, baseUrl: baseUrl)] //as garrit did
             currentWeather = CurrentModel(current: weather.current, baseUrl: baseUrl)
             print(weather)
+            dataStoring?.storedCurrentTemperature = currentWeather?.temp ?? 0.0
+            UserDefaults(suiteName: DataStoring.SharedStorage)?.set(dataStoring?.storedCurrentTemperature, forKey: DataStoring.tempKey)
+            
         } catch{
             print(error)
         }
