@@ -97,8 +97,8 @@ struct WeatherView: View {
 
 
 struct WeatherViewCompact: View {
-    @AppStorage(DataStoring.tempKey, store: UserDefaults(suiteName: DataStoring.SharedStorage)) private var currentTemperature: Double = 8.0
-    
+    @AppStorage(DataStoring.tempKey, store: UserDefaults(suiteName: DataStoring.SharedStorage)) private var currentTemperature: Double = 5.0
+
 
     var body: some View {
         VStack(spacing: 12) {

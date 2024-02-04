@@ -22,6 +22,11 @@ class Weathermodels {
     var weeklyWeather: [WeeklyModel] = [] //as garrit did
     var currentWeather: CurrentModel?
     var dataStoring: DataStoring?
+    var currentTemperature: Double = 0.0 {
+        didSet {
+            UserDefaults(suiteName: DataStoring.SharedStorage)?.set(currentTemperature, forKey: DataStoring.tempKey)
+        }
+    }
     
     
     
@@ -50,8 +55,10 @@ class Weathermodels {
             weeklyWeather = [WeeklyModel(daily: weather.daily, baseUrl: baseUrl)] //as garrit did
             currentWeather = CurrentModel(current: weather.current, baseUrl: baseUrl)
             print(weather)
-            dataStoring?.storedCurrentTemperature = currentWeather?.temp ?? 0.0
-            UserDefaults(suiteName: DataStoring.SharedStorage)?.set(dataStoring?.storedCurrentTemperature, forKey: DataStoring.tempKey)
+            currentTemperature = currentWeather?.temp ?? 0.0
+            print(currentTemperature)
+            UserDefaults(suiteName: DataStoring.SharedStorage)?.set(currentTemperature, forKey: DataStoring.tempKey)
+            
             
         } catch{
             print(error)
