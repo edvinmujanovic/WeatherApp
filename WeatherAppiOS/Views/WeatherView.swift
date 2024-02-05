@@ -101,24 +101,25 @@ struct WeatherViewCompact: View {
 
 
     var body: some View {
-        VStack(spacing: 12) {
-            // Display Current Weather
-            VStack {
-                Text("\(Int(currentTemperature))°C")
-                    .font(.title3)
-                    .fontWeight(.bold)
+            VStack(spacing: 12) {
+                Text("Weather🌦:")
+                    .font(.headline)
                     .foregroundColor(.black)
 
-                Text("🌦")
-                    .font(.title)
-                    .foregroundColor(.blue)
+                VStack {
+                    Text("\(Int(currentTemperature))°C")
+                        .font(.title3)
+                        .fontWeight(.bold)
+                        .foregroundColor(.black)
+                }
+                .padding()
+                .background(RoundedRectangle(cornerRadius: 10).fill(Color(.lightGray)).shadow(radius: 5))
+                .padding(.horizontal, 4)
             }
             .padding()
-            .background(RoundedRectangle(cornerRadius: 10).fill(Color.white).shadow(radius: 5))
+            .background(RoundedRectangle(cornerRadius: 10).fill(Color(.cyan)).shadow(radius: 5))
             .padding(.horizontal, 4)
         }
-
-    }
 }
 
 

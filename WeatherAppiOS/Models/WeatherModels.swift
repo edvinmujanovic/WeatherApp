@@ -56,7 +56,6 @@ class Weathermodels {
             currentWeather = CurrentModel(current: weather.current, baseUrl: baseUrl)
             print(weather)
             currentTemperature = currentWeather?.temp ?? 0.0
-            print(currentTemperature)
             UserDefaults(suiteName: DataStoring.SharedStorage)?.set(currentTemperature, forKey: DataStoring.tempKey)
             
             
