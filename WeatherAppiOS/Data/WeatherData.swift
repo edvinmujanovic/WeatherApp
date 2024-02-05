@@ -7,6 +7,8 @@
 
 import Foundation
 
+//remove unused data?
+
 struct WeatherData: Decodable {
     let latitude: Double
     let longitude: Double

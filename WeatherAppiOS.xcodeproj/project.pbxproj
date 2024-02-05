@@ -77,7 +77,6 @@
 
 /* Begin PBXFileReference section */
 		26310B622B6D620100EC39C0 /* DataStoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoring.swift; sourceTree = "<group>"; };
-		26310B6B2B71593D00EC39C0 /* night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = night.png; sourceTree = "<group>"; };
 		26734B252B5F05FD001176A4 /* WeatherAppiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherAppiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26734B282B5F05FD001176A4 /* WeatherAppiOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppiOSApp.swift; sourceTree = "<group>"; };
 		26734B2A2B5F05FD001176A4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -172,7 +171,6 @@
 				26C52F9A2B617802008AE0A3 /* Models */,
 				26C52F9B2B617930008AE0A3 /* Views */,
 				26734B2C2B5F0602001176A4 /* Assets.xcassets */,
-				26310B6B2B71593D00EC39C0 /* night.png */,
 				26734B2E2B5F0602001176A4 /* WeatherAppiOS.entitlements */,
 				26734B2F2B5F0602001176A4 /* Preview Content */,
 				26C52F8B2B6001F7008AE0A3 /* LocationManager.swift */,
