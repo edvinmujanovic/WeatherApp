@@ -25,7 +25,6 @@
 		26C52FA12B62F786008AE0A3 /* CurrentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C52FA02B62F786008AE0A3 /* CurrentModel.swift */; };
 		26C52FA92B632770008AE0A3 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C52FA82B632770008AE0A3 /* WidgetKit.framework */; };
 		26C52FAB2B632770008AE0A3 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C52FAA2B632770008AE0A3 /* SwiftUI.framework */; };
-		26C52FB02B632770008AE0A3 /* WeatherAppWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C52FAF2B632770008AE0A3 /* WeatherAppWidgetLiveActivity.swift */; };
 		26C52FB42B632772008AE0A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26C52FB32B632772008AE0A3 /* Assets.xcassets */; };
 		26C52FB82B632772008AE0A3 /* WeatherAppWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 26C52FA62B63276F008AE0A3 /* WeatherAppWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		26C52FC72B63D819008AE0A3 /* WeatherAppWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C52FB12B632770008AE0A3 /* WeatherAppWidget.swift */; };
@@ -98,7 +97,6 @@
 		26C52FA82B632770008AE0A3 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		26C52FAA2B632770008AE0A3 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		26C52FAD2B632770008AE0A3 /* WeatherAppWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppWidgetBundle.swift; sourceTree = "<group>"; };
-		26C52FAF2B632770008AE0A3 /* WeatherAppWidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppWidgetLiveActivity.swift; sourceTree = "<group>"; };
 		26C52FB12B632770008AE0A3 /* WeatherAppWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppWidget.swift; sourceTree = "<group>"; };
 		26C52FB32B632772008AE0A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		26C52FB52B632772008AE0A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -245,7 +243,6 @@
 			children = (
 				26C52FAD2B632770008AE0A3 /* WeatherAppWidgetBundle.swift */,
 				26C52FB12B632770008AE0A3 /* WeatherAppWidget.swift */,
-				26C52FAF2B632770008AE0A3 /* WeatherAppWidgetLiveActivity.swift */,
 				26C52FB32B632772008AE0A3 /* Assets.xcassets */,
 				26C52FB52B632772008AE0A3 /* Info.plist */,
 			);
@@ -450,7 +447,6 @@
 				26C52FCD2B63DD45008AE0A3 /* CurrentModel.swift in Sources */,
 				26C52FC72B63D819008AE0A3 /* WeatherAppWidget.swift in Sources */,
 				26C52FC82B63D81E008AE0A3 /* WeatherAppWidgetBundle.swift in Sources */,
-				26C52FB02B632770008AE0A3 /* WeatherAppWidgetLiveActivity.swift in Sources */,
 				26C52FCB2B63DD40008AE0A3 /* WeatherModels.swift in Sources */,
 				26310B642B6D673900EC39C0 /* DataStoring.swift in Sources */,
 				26C52FCE2B63DD48008AE0A3 /* WeatherData.swift in Sources */,

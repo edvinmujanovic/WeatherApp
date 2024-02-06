@@ -39,6 +39,7 @@ struct SimpleEntry: TimelineEntry {
 
 struct WeatherAppWidgetEntryView: View {
     var entry: Provider.Entry
+    @State private var widgetAppeared = false //Kolla om widgeten har kommit upp
     
     var body: some View {
         WeatherViewCompact()
@@ -46,6 +47,13 @@ struct WeatherAppWidgetEntryView: View {
             .background(
                 Color(.systemBackground)
             )
+            .onAppear {
+                // Reload the timeline when the widget appears for the first time
+                if !widgetAppeared {
+                    WidgetCenter.shared.reloadAllTimelines()
+                    widgetAppeared = true
+                }
+            }
     }
 }
 
