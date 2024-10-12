@@ -11,7 +11,6 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             WeatherView()
-           // WeatherViewCompact(weather: CurrentModel)
                 .navigationTitle("WeatherApp 🌦")
         }
     }

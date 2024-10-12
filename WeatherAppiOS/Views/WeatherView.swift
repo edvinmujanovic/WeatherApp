@@ -27,7 +27,7 @@ struct WeatherView: View {
     
     var body: some View {
         ZStack {
-            Image("background1") // Replace "background1" with your actual image name
+            Image("background1")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .edgesIgnoringSafeArea(.all)
@@ -164,5 +164,4 @@ struct WeatherViewCompact: View {
 
 #Preview {
     WeatherView()
-    //WeatherViewCompact()
 }

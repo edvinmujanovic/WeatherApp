@@ -39,7 +39,7 @@ struct SimpleEntry: TimelineEntry {
 
 struct WeatherAppWidgetEntryView: View {
     var entry: Provider.Entry
-    @State private var widgetAppeared = false //Kolla om widgeten har kommit upp
+    @State private var widgetAppeared = false
     
     var body: some View {
         WeatherViewCompact()

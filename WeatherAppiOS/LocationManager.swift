@@ -36,7 +36,6 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
             self.currentLocation = userLocation
             print("Did update locations. New Location: \(userLocation)")
 
-            // Fetch city information
             fetchCity(for: locations.first)
         }
 
